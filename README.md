@@ -100,6 +100,71 @@ Long Island City/Queens Plaza
 ![image](https://github.com/user-attachments/assets/39b466bd-a048-4d4d-a614-6e9e93c2eca7)
 
 
+## Terraform
+In this section homework we'll prepare the environment by creating resources in GCP with Terraform.
 
+In your VM on GCP/Laptop/GitHub Codespace install Terraform. Copy the files from the course repo here to your VM/Laptop/GitHub Codespace.
 
+Modify the files as necessary to create a GCP Bucket and Big Query Dataset.
 
+## Question 7. Creating Resources
+After updating the main.tf and variable.tf files run:
+
+terraform apply
+Paste the output of this command into the homework submission form.
+
+Terraform used the selected providers to generate the following
+execution plan. Resource actions are indicated with the following
+symbols:
+  + create
+
+Terraform will perform the following actions:
+
+  # google_storage_bucket.decamp25 will be created
+  + resource "google_storage_bucket" "decamp25" {
+      + force_destroy               = true
+      + id                          = (known after apply)
+      + location                    = "US"
+      + name                        = "green-taxi-bucket-2025"
+      + project                     = (known after apply)
+      + public_access_prevention    = (known after apply)
+      + self_link                   = (known after apply)
+      + storage_class               = "STANDARD"
+      + uniform_bucket_level_access = true
+      + url                         = (known after apply)
+
+      + lifecycle_rule {
+          + action {
+              + type          = "Delete"
+                # (1 unchanged attribute hidden)
+            }
+          + condition {
+              + age                    = 30
+              + matches_prefix         = []
+              + matches_storage_class  = []
+              + matches_suffix         = []
+              + with_state             = (known after apply)
+                # (3 unchanged attributes hidden)
+            }
+        }
+
+      + versioning {
+          + enabled = true
+        }
+
+      + website (known after apply)
+    }
+
+Plan: 1 to add, 0 to change, 0 to destroy.
+
+Do you want to perform these actions?
+  Terraform will perform the actions described above.
+  Only 'yes' will be accepted to approve.
+
+  Enter a value: yes
+
+google_storage_bucket.decamp25: Creating...
+google_storage_bucket.decamp25: Creation complete after 2s [id=green-taxi-bucket-2025]
+
+Apply complete! Resources: 1 added, 0 changed, 0 destroyed.
+@OluwasinaRofiyat ➜ /workspaces/DEcamp25 (main) $ 
